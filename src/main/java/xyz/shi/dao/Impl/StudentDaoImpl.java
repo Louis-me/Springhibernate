@@ -35,4 +35,18 @@ public class StudentDaoImpl implements StudentDao {
                 .uniqueResult();
         return new QueryResult(count.intValue(), list);
     }
+
+    @Override
+    public void update(Student student) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(student);
+    }
+
+    @Override
+    public void delete(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        Object user = session.get(Student.class, id);
+        session.delete(user);
+
+    }
 }

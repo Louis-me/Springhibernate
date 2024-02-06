@@ -18,7 +18,7 @@ public class PersonTest {
 
     @Test
     @Transactional
-//    @Rollback(false) // 不需要回滚
+    @Rollback(false) // 不需要回滚
     public void save() {
         IdCard idCard = new IdCard();
         idCard.setId(17);

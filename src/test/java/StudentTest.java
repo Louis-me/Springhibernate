@@ -46,7 +46,33 @@ public class StudentTest {
         for (Object[] arr : list) {
             Student student = (Student) arr[0];
             System.out.println("Student: " + student.getName() + ", Grade: " + student.getGrade().getName());
-
         }
     }
+    @Test
+    @Transactional
+    @Rollback(false) // 不需要回滚
+    public void update() {
+        Grade grade = new Grade();
+        grade.setId(36);
+        Student student = new Student();
+        student.setName("王大伟36222");
+        student.setId(41);
+        //设置学生的班级
+        student.setGrade(grade);
+
+        Student student2 = new Student();
+        student2.setGrade(grade);
+        student2.setName("小红36222");
+        student2.setId(42);
+
+        studentDao.update(student);
+        studentDao.update(student2);
+    }
+    @Test
+    @Transactional
+    @Rollback(false)
+    public void delete() {
+        studentDao.delete(51);
+    }
+
 }
